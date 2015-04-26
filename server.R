@@ -11,10 +11,10 @@ shinyServer(function(input, output) {
   #  2) Its output type is a plot
   
   output$distPlot <- renderPlot({
-    x    <- faithful[, 2]  # Old Faithful Geyser data
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    duration = faithful$eruptions   # the eruption durations 
+    bins <- seq(min(duration), max(duration), length.out = input$bins + 1)
     
     # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    hist(duration, breaks = bins, col = 'darkgray', border = 'white', ylab="Frequency", xlab="Eruption duration (min)", main="")
   })
 })
