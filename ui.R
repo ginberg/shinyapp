@@ -21,9 +21,10 @@ shinyUI(fluidPage(
     # Show a plot of the generated distribution
     mainPanel(            
       plotlyOutput("distPlot"),
-      p("The plot above shows the duration of the eruptions. With the slider below you can choose the number of time intervals (bins)"),
+      p("The plot above shows the duration of the eruptions. With the slider below you can choose the number of time intervals (bins) and the max duration"),
       br(),
-      sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30)
+      sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30),
+      sliderInput("maxduration", "Maximum duration:", min = min(faithful$eruptions), max = max(faithful$eruptions), value = max(faithful$eruptions))
     )
   )
 ))
