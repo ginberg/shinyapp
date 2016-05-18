@@ -1,4 +1,5 @@
 library(shiny)
+library(plotly)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
@@ -19,14 +20,10 @@ shinyUI(fluidPage(
     ),
     # Show a plot of the generated distribution
     mainPanel(            
-      plotOutput("distPlot"),
+      plotlyOutput("distPlot"),
       p("The plot above shows the duration of the eruptions. With the slider below you can choose the number of time intervals (bins)"),
       br(),
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
+      sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30)
     )
   )
 ))

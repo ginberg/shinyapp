@@ -1,4 +1,6 @@
 library(shiny)
+library(ggplot2)
+library(plotly)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
@@ -10,11 +12,12 @@ shinyServer(function(input, output) {
   #     when inputs change
   #  2) Its output type is a plot
   
-  output$distPlot <- renderPlot({
+  output$distPlot <- renderPlotly({
     duration = faithful$eruptions   # the eruption durations 
     bins <- seq(min(duration), max(duration), length.out = input$bins + 1)
     
     # draw the histogram with the specified number of bins
-    hist(duration, breaks = bins, col = 'darkgray', border = 'white', ylab="Frequency", xlab="Eruption duration (min)", main="")
+    plot <- ggplot(faithful, aes(x=eruptions)) + geom_histogram(breaks = bins, col="white", fill="blue") + ylab("  ") + xlab(" ")
+    ggplotly(plot) %>% layout(xaxis = list(title = "Eruption duration (min)"), yaxis = list(title = "Count")) 
   })
 })
